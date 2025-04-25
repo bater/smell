@@ -1,0 +1,40 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Poetry virtual environment
+.pvenv/
+venv/
+.env/
+
+# Test results and coverage
+.pytest_cache/
+.coverage
+coverage.xml
+*.cover
+htmlcov/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Editor and OS files
+.DS_Store
+*.swp
+*~
+.vscode/
+.idea/
+
+# Logs and temporary files
+*.log
+*.tmp
+temp/
+
+# Keep essential files
+!smell/
+!tests/
+!pyproject.toml
+!README.md
+!.gitignore

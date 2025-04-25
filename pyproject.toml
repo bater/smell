@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "smell"
+version = "0.1.0"
+description = "A static code analysis tool for detecting code smells"
+authors = ["Bater Chen <baterme@gmail.com>"]
+readme = "README.md"
+packages = [{include = "smell"}]
+
+[tool.poetry.dependencies]
+python = ">=3.13"
+click = "^8.1.7"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+click = "^8.1.7"
+
+[tool.poetry.scripts]
+smell = "smell.cli:main"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
