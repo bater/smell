@@ -9,6 +9,8 @@ packages = [{include = "smell"}]
 [tool.poetry.dependencies]
 python = ">=3.13"
 click = "^8.1.7"
+gitpython = "^3.1.43"
+pylint = "^3.3.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.5"

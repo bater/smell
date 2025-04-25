@@ -4,18 +4,16 @@ A static code analysis tool for detecting code smells in your codebase.
 
 ## Installation
 
-To install `smell` globally, build and install the wheel:
+To install `smell` globally, you need Python >= 3.13. If you have Poetry and a project repository, you can build and install the wheel:
 
 ```bash
+cd /path/to/smell
+python3 -m venv .venv
+source .venv/bin/activate
+pip install poetry
 poetry build
-pip install dist/smell-0.1.0-py3-none-any.whl
-```
-
-Ensure the Python environment's `bin/` directory is in your `PATH`. For example, if using `pyenv` with Python 3.13.3:
-
-```bash
-echo 'export PATH="$HOME/.pyenv/versions/3.13.3/bin:$PATH"' >> ~/.zshrc
-source ~/.zshrc
+pip install dist/smell-*.whl
+deactivate
 ```
 
 ## Usage
@@ -36,20 +34,29 @@ smell -h
 smell --help
 ```
 
+Analyze a Git branch for file statistics:
+```bash
+smell analyze --branch main
+```
+
 ## Development
 
 ### Prerequisites
 
 - Python >= 3.13
 - Poetry for dependency management
+- Git for version control
 
 ### Setup
 
-Clone the repository and install dependencies:
+Clone the repository and set up a virtual environment:
 
 ```bash
 git clone <repository-url>
 cd smell
+python3 -m venv .venv
+source .venv/bin/activate
+pip install poetry
 poetry install --with dev
 ```
 
@@ -81,7 +88,9 @@ smell/
 │   ├── __init__.py
 │   └── test_cli.py
 ├── pyproject.toml
+├── Poetry.lock
 ├── README.md
+├── .gitignore
 ```
 
 ## Contributing
