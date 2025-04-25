@@ -5,6 +5,7 @@ from unittest.mock import patch, mock_open, MagicMock, Mock
 from click.testing import CliRunner
 from datetime import datetime
 import git
+from git.exc import GitCommandError
 
 def test_version_command():
     runner = CliRunner()
@@ -52,13 +53,13 @@ def test_analyze_invalid_repository():
         assert result.exit_code == 1
         assert "Error: Not a valid Git repository." in result.output
 
-def test_analyze_non_existent_branch():
+def test_analyze_branch_not_exist():
     runner = CliRunner()
     with patch("git.Repo") as mock_repo:
-        mock_repo.return_value.git.checkout.side_effect = git.NoSuchPathError("Branch does not exist")
-        result = runner.invoke(main, ["analyze", "--branch", "invalid-branch"])
+        mock_repo.return_value.git.checkout.side_effect = GitCommandError("checkout", 1, b"", b"error: pathspec 'nn' did not match any file")
+        result = runner.invoke(main, ["analyze", "--branch", "nn"])
         assert result.exit_code == 1
-        assert "Error: Branch invalid-branch does not exist." in result.output
+        assert "Error: Branch 'nn' does not exist" in result.output
 
 def test_analyze_code_smells():
     runner = CliRunner()
